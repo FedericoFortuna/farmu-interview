@@ -1,4 +1,4 @@
-package com.farmu.farmuChallenge;
+package com.farmu.farmuChallenge.utils;
 
 public class Constants {
     public static final String URL_PREFIX = "farmu_url";
@@ -7,5 +7,6 @@ public class Constants {
     public static final String COLON = ":";
     public static final String D_SLASH = "//";
     public static final String SLASH = "/";
-    public static final String REGEX = "^(https?|http?|ftp)://[a-zA-Z0-9+&@#/%?=~_|!:,.;-]*[-a-zA-Z0-9+&@#/%=~_|]";
+    public static final String REGEX = "^https?:\\/\\/[\\w\\-]+(\\.[\\w\\-]+)+[/#?]?.*$";
+    public static final String COM = "com";
 }
