@@ -1,4 +1,4 @@
-package com.farmu.shorterurl.dtos;
+package com.farmu.farmuChallenge.dtos;
 
 import lombok.*;
 
