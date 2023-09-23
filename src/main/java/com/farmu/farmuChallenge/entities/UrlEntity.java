@@ -1,20 +1,25 @@
 package com.farmu.farmuChallenge.entities;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Entity
-@Table(name = "urls")
+@Table(name = "URLS")
 @Getter
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class UrlEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(name = "id", columnDefinition = "BINARY(16)")
+    private UUID id;
 
     @Column(name = "original_path")
     private String originalPath;

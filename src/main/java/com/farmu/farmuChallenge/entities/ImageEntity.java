@@ -1,8 +1,10 @@
 package com.farmu.farmuChallenge.entities;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
@@ -10,6 +12,8 @@ import java.time.LocalDateTime;
 @Table(name = "images")
 @Getter
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class ImageEntity {
 
     @Id
