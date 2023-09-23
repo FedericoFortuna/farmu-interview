@@ -7,20 +7,14 @@ import lombok.Getter;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "images")
+@Table(name = "urls")
 @Getter
 @Builder
-public class Image {
+public class UrlEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Column(name = "name")
-    private String name;
-
-    @Column(name = "extension")
-    private String extension;
 
     @Column(name = "original_path")
     private String originalPath;
@@ -28,7 +22,7 @@ public class Image {
     @Column(name = "shorter_path")
     private String shorterPath;
 
-    @Column(name = "creation_date")
+    @Column(name = "creationDate")
     private LocalDateTime creationDate;
 
 }
