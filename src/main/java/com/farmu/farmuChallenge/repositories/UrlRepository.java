@@ -8,6 +8,7 @@ import java.util.UUID;
 
 @Repository
 public interface UrlRepository extends JpaRepository<UrlEntity, UUID> {
+    UrlEntity findByShorterPath(String shorterUrl);
 }
 
 

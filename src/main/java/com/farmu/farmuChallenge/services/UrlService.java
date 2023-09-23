@@ -6,10 +6,9 @@ import com.farmu.farmuChallenge.exceptions.InvalidUrlFormatException;
 import com.farmu.farmuChallenge.repositories.UrlRepository;
 import com.farmu.farmuChallenge.utils.Utils;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.tomcat.util.bcel.Const;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.yaml.snakeyaml.scanner.Constant;
+
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -21,9 +20,14 @@ public class UrlService {
     @Autowired
     private UrlRepository repository;
 
-    public String processUrl(String url){
+    public String getOriginalUrl(String shortenedUrl) {
+        UrlEntity url = repository.findByShorterPath(shortenedUrl);
+        return url.getOriginalPath();
+    }
 
-        if(!Utils.isValidURL(url)){
+    public String processUrl(String url) {
+
+        if (!Utils.isValidURL(url)) {
             throw new InvalidUrlFormatException();
         }
 
@@ -37,8 +41,7 @@ public class UrlService {
     }
 
 
-
-    private UrlEntity buildImageEntity(String url, UUID id, String shorterPath){
+    private UrlEntity buildImageEntity(String url, UUID id, String shorterPath) {
 
         return UrlEntity.builder()
                 .id(id)
@@ -48,7 +51,7 @@ public class UrlService {
                 .build();
     }
 
-    private String clipUrl(UUID id){
+    private String clipUrl(UUID id) {
         return Constants.SECURE_PROTOCOL
                 + Constants.COLON
                 + Constants.D_SLASH
@@ -59,7 +62,7 @@ public class UrlService {
                 + id.toString();
     }
 
-    private void saveUrl(UrlEntity entity){
+    private void saveUrl(UrlEntity entity) {
         repository.save(entity);
     }
 
