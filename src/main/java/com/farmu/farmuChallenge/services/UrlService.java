@@ -1,5 +1,6 @@
 package com.farmu.farmuChallenge.services;
 
+import com.farmu.farmuChallenge.exceptions.UrlNotFoundException;
 import com.farmu.farmuChallenge.utils.Constants;
 import com.farmu.farmuChallenge.entities.UrlEntity;
 import com.farmu.farmuChallenge.exceptions.InvalidUrlFormatException;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -21,8 +23,21 @@ public class UrlService {
     private UrlRepository repository;
 
     public String getOriginalUrl(String shortenedUrl) {
-        UrlEntity url = repository.findByShorterPath(shortenedUrl);
-        return url.getOriginalPath();
+        String id = getId(shortenedUrl);
+        Optional<UrlEntity> urlOpt = repository.findById(UUID.fromString(id));
+        if (urlOpt.isEmpty()) {
+            throw new UrlNotFoundException();
+        }
+        return urlOpt.get().getOriginalPath();
+    }
+
+    private String getId(String url) {
+        int lastIndex = url.lastIndexOf('/');
+        if (lastIndex != -1) {
+            return url.substring(lastIndex + 1);
+        } else {
+            return url;
+        }
     }
 
     public String processUrl(String url) {
@@ -33,7 +48,7 @@ public class UrlService {
 
         UUID id = Utils.generateUUID();
 
-        String shorterPath = clipUrl(id);
+        String shorterPath = buildShortenedUrl(id);
 
         saveUrl(buildImageEntity(url, id, shorterPath));
 
@@ -51,7 +66,7 @@ public class UrlService {
                 .build();
     }
 
-    private String clipUrl(UUID id) {
+    private String buildShortenedUrl(UUID id) {
         return Constants.SECURE_PROTOCOL
                 + Constants.COLON
                 + Constants.D_SLASH

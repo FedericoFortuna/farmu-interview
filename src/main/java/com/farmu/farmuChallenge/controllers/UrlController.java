@@ -16,12 +16,6 @@ import java.io.IOException;
 @Slf4j
 public class UrlController {
 
-    //TODO
-    // add logs
-    // review expire function to get url
-    // add tests
-    
-
     @Autowired
     private UrlService service;
 
@@ -31,8 +25,8 @@ public class UrlController {
     }
 
     @GetMapping(value = "/shortened")
-    public void redirectUrl(@RequestParam String shortenedUrl, HttpServletResponse response) throws IOException {
-        String originalUrl = service.getOriginalUrl(shortenedUrl);
+    public void redirectUrl(@RequestParam String url, HttpServletResponse response) throws IOException {
+        String originalUrl = service.getOriginalUrl(url);
         if (originalUrl != null) {
             response.sendRedirect(originalUrl);
         } else {
