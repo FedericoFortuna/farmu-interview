@@ -9,4 +9,5 @@ public class Constants {
     public static final String SLASH = "/";
     public static final String REGEX = "^https?:\\/\\/[\\w\\-]+(\\.[\\w\\-]+)+[/#?]?.*$";
     public static final String COM = "com";
+    public static final String JPG ="jpg";
 }
