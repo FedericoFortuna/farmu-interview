@@ -24,6 +24,7 @@ public class ImageController {
 
     private static final String INFO_IMAGE_SIZES = "{} - File with width: {} and height: {} was received at {}";
     private static final String HEADERS_CONFIG = "{} - Headers are being configured at {}";
+    private static final String SENDING_IMAGE = "{} - Sending image at {}";
 
     @Autowired
     private ImageService imageService;
@@ -38,6 +39,7 @@ public class ImageController {
             HttpHeaders headers = new HttpHeaders();
             log.info(HEADERS_CONFIG, Constants.CONTROLLER_NATURE, LocalDateTime.now().withNano(0));
             headers.setContentType(MediaType.IMAGE_JPEG);
+            log.info(SENDING_IMAGE, Constants.CONTROLLER_NATURE, LocalDateTime.now().withNano(0));
             return new ResponseEntity<>(resizedImage, headers, HttpStatus.OK);
         } catch (IOException e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
