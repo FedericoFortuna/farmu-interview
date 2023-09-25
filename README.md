@@ -21,9 +21,9 @@ Para trabajar con este proyecto, necesitarás clonarlo desde el repositorio de G
 
 El proyecto está organizado en dos controladores principales, cada uno responsable de una funcionalidad específica:
 
-1. **ImageController**: Este controlador maneja el redimensionamiento de imágenes. Expone un punto final `/image/resize` para cargar un archivo de imagen y especificar el ancho y alto deseados para el redimensionamiento. La imagen redimensionada se devuelve como respuesta.
+1. **ImageController**: Este controlador maneja el redimensionamiento de imágenes. Expone un endpoint `/image/resize` para cargar un archivo de imagen y especificar el ancho y alto deseados para el redimensionamiento. La imagen redimensionada se devuelve como respuesta.
 
-2. **UrlController**: Este controlador gestiona el acortamiento y la redirección de URLs. Proporciona dos puntos finales:
+2. **UrlController**: Este controlador gestiona el acortamiento y la redirección de URLs. Proporciona dos endpoints:
     - `/url`: Acepta una URL y devuelve una versión acortada.
     - `/url/shortened`: Redirige desde una URL acortada a su ruta original.
 
@@ -40,7 +40,7 @@ Cabe aclarar que el metodo HTTP utilizado es POST.
 
 ## Acortamiento de URLs
 
-El controlador `UrlController` maneja el acortamiento y la redirección de URLs. Cuando se proporciona una URL a `/url`, genera una versión acortada y la devuelve. El punto final `/url/shortened` se utiliza para redirigir desde una URL acortada a la URL original.
+El controlador `UrlController` maneja el acortamiento y la redirección de URLs. Cuando se proporciona una URL a `/url`, genera una versión acortada y la devuelve. El endpoint `/url/shortened` se utiliza para redirigir desde una URL acortada a la URL original.
 * Es importante tener en cuenta que los url proporcionados para obtener un url acortado, deben ser enviados con el protocolo https al inicio de esta.
 
 
